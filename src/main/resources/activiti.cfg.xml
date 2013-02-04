@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/activiti-memory?autoReconnect=true" />
+		<property name="user" value="activiti" />
+		<property name="password" value="activiti" />
+
+		<property name="minPoolSize" value="1" />
+		<property name="maxPoolSize" value="100" />
+		<property name="maxIdleTime" value="1" />
+	</bean>  -->
+	
+	<bean id="processEngineConfiguration"
+		class="org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration">
+
+        <property name="jdbcDriver" value="com.mysql.jdbc.Driver" />
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/activiti-memory?autoReconnect=true" />
+        <property name="jdbcUsername" value="activiti" />
+        <property name="jdbcPassword" value="activiti" />
+        
+        <property name="jdbcMaxActiveConnections" value="100" />
+        <property name="jdbcMaxIdleConnections" value="10" />
+
+        <!-- <property name="dataSource" ref="dataSource" /> -->
+
+		<!-- Database configurations -->
+		<property name="databaseSchemaUpdate" value="create-drop" />
+
+		<!-- job executor configurations -->
+		<property name="jobExecutorActivate" value="true" />
+		
+	    <property name="createDiagramOnDeploy" value="false" />
+
+	</bean>
+
+</beans>
